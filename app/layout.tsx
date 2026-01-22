@@ -22,6 +22,8 @@ export const metadata: Metadata = {
   },
 }
 
+import { AuthProvider } from '@/contexts/AuthContext'
+
 export default function RootLayout({
   children,
 }: {
@@ -33,7 +35,11 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   )
 }
