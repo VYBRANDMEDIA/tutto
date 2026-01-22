@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Tutto Chat Brand Colors - Coral/Orange primary */
+    --primary: 25 85% 60%; /* Coral/Orange */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 230 60% 55%; /* Blue accent */
+    --secondary-foreground: 0 0% 100%;
+    
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    
+    --border: 0 0% 90%;
+    --radius: 1rem;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Mobile touch targets */
+  button, a {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Remove tap highlight */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Message bubbles */
+  .message-sent {
+    @apply bg-primary text-primary-foreground rounded-2xl rounded-br-md px-4 py-2.5 max-w-[75%] ml-auto shadow-sm;
+  }
+  
+  .message-received {
+    @apply bg-card border border-border rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[75%] mr-auto shadow-sm;
+  }
+  
+  /* Safe area insets for iOS */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* Bottom navigation */
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-card border-t border-border z-50;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Hide scrollbar on mobile */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
