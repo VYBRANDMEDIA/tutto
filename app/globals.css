@@ -1,34 +1,34 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Tutto Chat Brand Colors */
+  --color-primary: oklch(65% 0.2 25); /* Coral/Orange */
+  --color-secondary: oklch(60% 0.15 250); /* Blue */
+  
+  --color-background: oklch(100% 0 0); /* White */
+  --color-foreground: oklch(20% 0 0); /* Dark gray */
+  
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(20% 0 0);
+  
+  --color-muted: oklch(96% 0 0);
+  --color-muted-foreground: oklch(50% 0 0);
+  
+  --color-border: oklch(90% 0 0);
+  
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.5rem;
+}
 
 @layer base {
-  :root {
-    /* Tutto Chat Brand Colors - Coral/Orange primary */
-    --primary: 25 85% 60%; /* Coral/Orange */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 230 60% 55%; /* Blue accent */
-    --secondary-foreground: 0 0% 100%;
-    
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
-    
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
-    
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    
-    --border: 0 0% 90%;
-    --radius: 1rem;
-  }
-  
   * {
-    @apply border-border;
+    border-color: var(--color-border);
   }
   
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -36,7 +36,8 @@
   
   /* Mobile touch targets */
   button, a {
-    @apply min-h-[44px] min-w-[44px];
+    min-height: 44px;
+    min-width: 44px;
   }
   
   /* Remove tap highlight */
@@ -52,11 +53,25 @@
 @layer utilities {
   /* Message bubbles */
   .message-sent {
-    @apply bg-primary text-primary-foreground rounded-2xl rounded-br-md px-4 py-2.5 max-w-[75%] ml-auto shadow-sm;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 1rem;
+    border-bottom-right-radius: 0.25rem;
+    padding: 0.625rem 1rem;
+    max-width: 75%;
+    margin-left: auto;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   }
   
   .message-received {
-    @apply bg-card border border-border rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[75%] mr-auto shadow-sm;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    border-bottom-left-radius: 0.25rem;
+    padding: 0.625rem 1rem;
+    max-width: 75%;
+    margin-right: auto;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   }
   
   /* Safe area insets for iOS */
@@ -70,7 +85,13 @@
   
   /* Bottom navigation */
   .bottom-nav {
-    @apply fixed bottom-0 left-0 right-0 bg-card border-t border-border z-50;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-card);
+    border-top: 1px solid var(--color-border);
+    z-index: 50;
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
